@@ -1,6 +1,7 @@
 #include <iostream>
 
-//#include "sir.hh"
+#include "logger.h"
+#include "sir.hh"
 #include "sir.h"
 
 int report_error(void)
@@ -77,6 +78,10 @@ int main()
 
 //    sir::logger logger;
 //    logger.info("info c++ test");
+
+    XLOGE("main") << "TEST " << f;
+    XLOGD("main") << "TEST ";
+    LOGD("main", "test");
     /* Clean up. */
     sir_cleanup();
 }

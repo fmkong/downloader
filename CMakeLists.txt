@@ -18,7 +18,7 @@ SET(CMAKE_CXX_EXTENSIONS ON)
 SET(CMAKE_BUILD_TYPE DEBUG)
 
 SET(COMMON_FLAGS "-fstack-protector-strong -Wl,-z,relro \
-                  -Os -Wall -Werror -fno-strict-aliasing -g -rdynamic")
+                  -Os -Wall -Werror ")
 
 SET(CMAKE_C_FLAGS ${COMMON_FLAGS})
 SET(CMAKE_C_FLAGS_DEBUG ${COMMON_FLAGS})
@@ -30,11 +30,12 @@ SET(CMAKE_CXX_FLAGS_RELEASE ${COMMON_FLAGS})
 
 LINK_LIBRARIES(-lpthread -lm)
 
-SET(CMAKE_EXE_LINKER_FLAGS "-g -rdynamic")
+SET(CMAKE_EXE_LINKER_FLAGS "-g")
 
 ADD_SUBDIRECTORY(thirdparty/libsir)
 
 INCLUDE_DIRECTORIES(thirdparty/libsir)
+INCLUDE_DIRECTORIES(thirdparty/logger)
 
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/lib)
 LINK_LIBRARIES(logger)
@@ -43,4 +44,5 @@ AUX_SOURCE_DIRECTORY(src MAIN_DIR_SRCS)
 
 ADD_EXECUTABLE( ${CMAKE_PROJECT_NAME}
         main.cpp
+        thirdparty/logger/logger.cpp
 )
